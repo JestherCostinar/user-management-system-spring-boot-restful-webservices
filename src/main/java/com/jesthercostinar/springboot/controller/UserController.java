@@ -17,7 +17,14 @@ public class UserController {
     // Create user REST API
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
-        User savedUser =userService.create(user);
+        User savedUser = userService.createUser(user);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+    }
+
+    // REST API for retrive user by Id
+    @GetMapping("{id}")
+    public ResponseEntity<User> getUserById(@PathVariable("id") Long userId) {
+        User user = userService.getUserById(userId);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }

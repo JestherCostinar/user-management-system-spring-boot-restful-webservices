@@ -3,5 +3,7 @@ package com.jesthercostinar.springboot.service;
 import com.jesthercostinar.springboot.entity.User;
 
 public interface UserService {
-    User create(User user);
+    User createUser(User user);
+
+    User getUserById(Long id);
 }
