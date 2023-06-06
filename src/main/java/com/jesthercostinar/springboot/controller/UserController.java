@@ -1,5 +1,6 @@
 package com.jesthercostinar.springboot.controller;
 
+import com.jesthercostinar.springboot.dto.UserDto;
 import com.jesthercostinar.springboot.entity.User;
 import com.jesthercostinar.springboot.service.UserService;
 import lombok.AllArgsConstructor;
@@ -18,31 +19,31 @@ public class UserController {
 
     // Create user REST API
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User savedUser = userService.createUser(user);
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto user) {
+        UserDto savedUser = userService.createUser(user);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
     // REST API for retrive user by Id
     @GetMapping("{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") Long userId) {
-        User user = userService.getUserById(userId);
+    public ResponseEntity<UserDto> getUserById(@PathVariable("id") Long userId) {
+        UserDto user = userService.getUserById(userId);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     // REST API to retrieve all users
     @GetMapping
-    public ResponseEntity<List<User>> getAllUser() {
-        List<User> users = userService.getAllUsers();
+    public ResponseEntity<List<UserDto>> getAllUser() {
+        List<UserDto> users = userService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     // REST API for update user
     @PutMapping("{id}")
-    public ResponseEntity<User> updateUser(@PathVariable("id") Long userId,
-                                           @RequestBody User user) {
+    public ResponseEntity<UserDto> updateUser(@PathVariable("id") Long userId,
+                                           @RequestBody UserDto user) {
         user.setId(userId);
-        User updatedUser = userService.updateUser(user);
+        UserDto updatedUser = userService.updateUser(user);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
